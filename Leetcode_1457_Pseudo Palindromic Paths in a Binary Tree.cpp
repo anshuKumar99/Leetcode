@@ -9,9 +9,9 @@ Input: root = [2,3,1,3,1,null,1]
 Output: 2 
 */
 
-//Approach 1:Using Vector 
+//Approach 1 : Using Vector 
 //T.C : O(n)
-//S.C : O(1) 
+//S.C : O(1) [Ignoring stack recursive space]
 
 class Solution {
 public:
@@ -46,5 +46,32 @@ public:
         int count=0;
         preorder(root,d,count);
         return count;
+    }
+};
+
+//Approach 1 : Using bit magic
+//T.C : O(n)
+//S.C : O(1) [Ignoring stack recursive space]
+
+class Solution {
+public:
+    int output=0;
+    void preorder(TreeNode* root,int count){
+        if(root==NULL){
+            return;
+        }
+        count=count^(1<<root->val); //To set (root->val) bit
+        if(root->left==NULL && root->right==NULL){
+            if((count&(count-1))==0){ // If count & count-1 is 0 that means only one digit has odd frequency or every digit has even frequency. So, we can make a palindrome.
+                output++;
+            }
+        }
+        preorder(root->left,count);
+        preorder(root->right,count);
+    }
+    int pseudoPalindromicPaths (TreeNode* root) {
+        int count=0;
+        preorder(root,count);
+        return output;
     }
 };
