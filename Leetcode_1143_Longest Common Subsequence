@@ -18,7 +18,9 @@ Explanation: The longest common subsequence is "abc" and its length is 3.
 
 Approach :
 
-int longestCommonSubsequence(string text1, string text2) {
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
         int n=text1.length();
         int m=text2.length();
         vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
@@ -37,4 +39,5 @@ int longestCommonSubsequence(string text1, string text2) {
         return dp[0][0];
         
     }
+};
 
