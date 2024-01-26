@@ -17,6 +17,9 @@ Output: 3
 Explanation: The longest common subsequence is "abc" and its length is 3.
 */
 
+//One approach can be brute force approach one in which we will find all subsequences of both the strings and then we can find longest common subsequence.
+
+//Optimized Approach
 
 class Solution {
 public:
