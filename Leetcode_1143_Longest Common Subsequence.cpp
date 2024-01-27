@@ -19,6 +19,49 @@ Explanation: The longest common subsequence is "abc" and its length is 3.
 
 //One approach can be brute force approach one in which we will find all subsequences of both the strings and then we can find longest common subsequence.
 
+class Solution {
+public:
+    void solve1(string &text1,vector<string> &v1,string output,int i){
+        if(i>=text1.size()){
+            v1.push_back(output);
+            return;
+        }
+        solve1(text1,v1,output,i+1);
+        solve1(text1,v1,output+text1[i],i+1);
+
+
+    }
+     void solve2(string &text2,vector<string> &v2,string output,int i){
+        if(i>=text2.size()){
+            v2.push_back(output);
+            return;
+        }
+        solve2(text2,v2,output,i+1);
+        solve2(text2,v2,output+text2[i],i+1);
+
+
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        vector<string> v1;
+        vector<string> v2;
+        solve1(text1,v1,"",0);
+        solve2(text2,v2,"",0);
+        int maxLen=0;
+        for(int i=0;i<v1.size();i++){
+            for(int j=0;j<v2.size();j++){
+                if(v1[i]==v2[j]){
+                    int size=v1[i].size();
+                    maxLen=max(maxLen,size);
+                }
+            }
+        }
+        return maxLen;
+
+        
+    }
+};
+
+
 //Optimized Approach
 
 class Solution {
