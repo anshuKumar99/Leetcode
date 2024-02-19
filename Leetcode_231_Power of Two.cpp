@@ -46,10 +46,23 @@ public:
             }
             n/=2;
         }
-        return 1;
-        
+        return 1;  
     }
-
 };
 
-//Approach 2 : Remainder-divident method
+
+//Approach 2 : Bit manipulation method
+// bit representation of 7  -> 0111
+// bit representation of 8  -> 1000
+// bitwise AND of 7 and 8 -> 0000
+// We will use this property for all numbers which are powers of two
+
+class Solution {
+public:
+    bool isPowerOfTwo(int n){
+        if(n<1){
+            return 0;
+        }
+        return ((n&(n-1))==0);
+    }
+};
