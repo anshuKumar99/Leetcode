@@ -23,3 +23,22 @@ Constraints:
 0 <= left <= right <= 231 - 1
 
 */
+
+class Solution {
+public:
+    int rangeBitwiseAnd(int left, int right) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        
+        if(left==0){
+            return 0;
+        }
+        if (__builtin_clz(left)!=__builtin_clz(right)){
+            return 0;//left & right don't have same bit length
+        }
+        while(right>left){
+            right&=(right-1);
+        }
+        return right;
+    }
+};
