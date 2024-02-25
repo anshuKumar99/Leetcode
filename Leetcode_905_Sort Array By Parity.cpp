@@ -5,7 +5,6 @@ LEETCODE LINK : https://leetcode.com/problems/sort-array-by-parity/description/
 Given an integer array nums, move all the even integers at the beginning of the array followed by all the odd integers.
 
 Return any array that satisfies this condition.
-
  
 Example 1:
 
@@ -32,11 +31,13 @@ public:
         int n=nums.size();
         vector<int> output;
         sort(nums.begin(),nums.end());
+        //even elements
         for(int i=0;i<n;i++){
             if(nums[i]%2==0){
                 output.push_back(nums[i]);
             }
         }
+        //odd elements
         for(int i=0;i<n;i++){
             if(nums[i]%2!=0){
                 output.push_back(nums[i]);
