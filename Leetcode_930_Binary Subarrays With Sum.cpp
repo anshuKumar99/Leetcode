@@ -50,34 +50,53 @@ public:
     }
 };
 
-//OPTIMIZED SOLUTION
+//OPTIMIZED SOLUTION : USING MAP
 
 class Solution {
 public:
     int numSubarraysWithSum(vector<int>& nums, int goal) {
         int n=nums.size();
-        int ans=0;
-        int windowSum=0;
-        int i=0,j=0;
-        int zerosCount=0;
-        while(j<n){
-            windowSum += nums[j];
-
-            while(i<j && (nums[i]==0 || windowSum > goal)){
-                if(nums[i]==0)
-                    zerosCount++;
-                else 
-                    zerosCount=0;
-                
-                windowSum -= nums[i];
-                i++;
+        unordered_map<int,int> mp;
+        mp[0]=1;
+        int sum=0,ans=0;
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            int rem=sum-goal;
+            if(mp.find(rem)!=mp.end()){
+                ans+=mp[rem];
             }
-            if(windowSum==goal)
-                ans+= 1 + zerosCount;
-
-            j++;
+            mp[sum]++;
         }
         return ans;
     }
 };
 
+
+//MOST OPTIMIZED SOLUTION : USING SLIDING WINDOW
+
+class Solution {
+public:
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        int n=nums.size();
+        int winSum=0,ans=0,countPrefixZeros=0,i=0,j=0;
+        while(j<n){
+            winSum+=nums[j];
+            while(i<j && (winSum>goal || nums[i]==0)){
+                if(nums[i]==0){
+                    countPrefixZeros++;
+                }
+                else{
+                    countPrefixZeros=0;
+                }
+                winSum-=nums[i];
+                i++;
+
+            }
+            if(winSum==goal){
+                ans+=(1+countPrefixZeros);
+            }
+            j++;
+        }
+        return ans;
+    }
+};
