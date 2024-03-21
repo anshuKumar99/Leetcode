@@ -38,6 +38,37 @@ points[i].length == 2
 -231 <= xstart < xend <= 231 - 1
 */
 
+//Optimal Approach
+
+class Solution {
+public:
+    int findMinArrowShots(vector<vector<int>>& points) {
+        int n=points.size();
+        sort(points.begin(),points.end());
+
+        int cnt=1;
+        int prevS=points[0][0],prevE=points[0][1];
+
+        for(int i=1;i<n;i++){
+            int currS=points[i][0],currE=points[i][1];
+            if(currS>prevE){
+                cnt++;
+                prevS=currS;
+                prevE=currE;
+            }
+            else{
+                prevS=max(prevS,currS);
+                prevE=min(prevE,currE);
+            }
+        }
+        return cnt;
+        
+    }
+};
+
+
+//Brute Force Approach
+
 class Solution {
 public:
     int findMinArrowShots(vector<vector<int>>& points) {
