@@ -34,6 +34,35 @@ All the integers in nums appear only once except for precisely one integer which
 
 */
 
+// Using Map
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+
+        int n=nums.size();
+
+        unordered_map<int,int> mp;
+
+        for(auto i:nums){
+            if(mp[i]==1){
+                return i;
+            }
+            mp[i]++;
+        }
+
+        return -1;
+    }
+};
+
+
+// Using Sorting
+// Time Complexity: O(n*logn)
+// Space Complexity: O(1)
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {     
