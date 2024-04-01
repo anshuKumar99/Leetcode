@@ -27,6 +27,10 @@ Constraints:
 
 */
 
+// Sliding window
+// T.C : O(n)
+// S.C : O(1)
+
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& nums, int k) {
@@ -52,6 +56,32 @@ public:
             j++;
         }
 
+        return cnt;
+    }
+};
+
+
+//Brute force
+// T.C : O(n*n)
+// S.C : O(1)
+
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        int n=nums.size();
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            int product=1;
+            for(int j=i;j<n;j++){
+                product*=nums[j];
+                if(product<k){
+                    cnt++;
+                }
+                else{
+                    break;
+                }
+            }
+        }
         return cnt;
     }
 };
