@@ -53,11 +53,13 @@ Constraints:
 */
 
 // APPROACH 1: BRUTE FORCE
+// T.C : O(n * 2^n)
+// S.C : O(n * 2^n)
 
 class Solution {
 public:
     void helper(vector<int>& nums,vector<int> curr,int i,int &output,int n){
-        if(i>=n){
+        if(i==n){
             int currXor = 0;
             for(int j=0;j<curr.size();j++){
                 currXor=currXor^curr[j];
@@ -77,6 +79,34 @@ public:
         int output=0;
         int i=0;
         vector<int> curr;
+        helper(nums,curr,i,output,n);
+        return output;
+    }
+};
+
+// APPROACH 2: USING OPTIMAL BACKTRACKING
+// T.C : O(2^n)
+// S.C : O(n)
+
+class Solution {
+public:
+    void helper(vector<int>& nums,int curr,int i,int &output,int n){
+        if(i==n){
+            output+=curr;
+            return;
+        }
+        helper(nums,curr,i+1,output,n);
+        curr=curr^nums[i];
+        helper(nums,curr,i+1,output,n);
+    }
+    int subsetXORSum(vector<int>& nums) {
+        int n=nums.size();
+        if(n==0){
+            return 0;
+        }
+        int output=0;
+        int i=0;
+        int curr=0;
         helper(nums,curr,i,output,n);
         return output;
     }
