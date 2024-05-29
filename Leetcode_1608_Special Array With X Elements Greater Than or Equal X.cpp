@@ -63,3 +63,26 @@ public:
         return -1;
     }
 };
+
+
+//Approach-2 (Using binary search)
+//T.C : O(n*logn)
+//S.C : O(1)
+
+class Solution {
+public:
+    int specialArray(vector<int>& nums) {
+        int n=nums.size();
+
+        sort(nums.begin(),nums.end());
+
+        for(int x=0;x<=n;x++){
+            int idx=lower_bound(begin(nums),end(nums),x)-begin(nums);
+            int cnt=n-idx;
+            if(cnt==x){
+                return x;
+            }
+        }
+        return -1;
+    }
+};
