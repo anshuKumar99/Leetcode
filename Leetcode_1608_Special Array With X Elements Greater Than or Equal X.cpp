@@ -65,9 +65,9 @@ public:
 };
 
 
-//Approach-2 (Using binary search)
-//T.C : O(n*logn)
-//S.C : O(1)
+// Approach-2 (Using binary search)
+// T.C : O(n*logn)
+// S.C : O(1)
 
 class Solution {
 public:
@@ -81,6 +81,38 @@ public:
             int cnt=n-idx;
             if(cnt==x){
                 return x;
+            }
+        }
+        return -1;
+    }
+};
+
+
+// Approach-3 (Binary search on answer)
+// T.C : O(n*logn)
+// S.C : O(1)
+
+class Solution {
+public:
+    int specialArray(vector<int>& nums) {
+        int n=nums.size();
+
+        sort(nums.begin(),nums.end());
+
+        int l=0,r=n;
+
+        while(l<=r){
+            int mid=l+(r-l)/2;
+            int idx=lower_bound(begin(nums),end(nums),mid)-begin(nums);
+            int cnt=n-idx;
+            if(cnt==mid){
+                return cnt;
+            }
+            else if(cnt>mid){
+                l=mid+1;
+            }
+            else{
+                r=mid-1;
             }
         }
         return -1;
