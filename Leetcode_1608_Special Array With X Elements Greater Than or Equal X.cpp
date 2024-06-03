@@ -118,3 +118,30 @@ public:
         return -1;
     }
 };
+
+// Approach-4 (Using counting Sort + Prefix Sum)
+// T.C : O(n)
+// S.C : O(n)
+
+class Solution {
+public:
+    int specialArray(vector<int>& nums) {
+        int n=nums.size();
+
+        vector<int> freq(n+1);
+
+        for(int i=0;i<n;i++){
+            int num=nums[i];
+            freq[min(n,num)]++;
+        }
+
+        int cumSum=0;
+        for(int x=n;x>=0;x--){
+            cumSum+=freq[x];
+            if(cumSum==x){
+                return x;
+            }
+        }
+        return -1;
+    }
+};
