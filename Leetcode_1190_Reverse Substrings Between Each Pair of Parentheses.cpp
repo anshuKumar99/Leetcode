@@ -8,7 +8,6 @@ Reverse the strings in each pair of matching parentheses, starting from the inne
 
 Your result should not contain any brackets.
  
-
 Example 1:
 
 Input: s = "(abcd)"
@@ -24,8 +23,7 @@ Example 3:
 
 Input: s = "(ed(et(oc))el)"
 Output: "leetcode"
-Explanation: First, we reverse the substring "oc", then "etco", and finally, the whole string.
- 
+Explanation: First, we reverse the substring "oc", then "etco", and finally, the whole string. 
 
 Constraints:
 
