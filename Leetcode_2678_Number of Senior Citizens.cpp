@@ -31,3 +31,19 @@ details[i][10] is either 'M' or 'F' or 'O'.
 The phone numbers and seat numbers of the passengers are distinct.
 
 */
+
+class Solution {
+public:
+    int countSeniors(vector<string>& details) {
+        int n=details.size();
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            string sub=details[i].substr(11,2);
+            int age=stoi(sub);
+            if(age>60){
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+};
