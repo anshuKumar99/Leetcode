@@ -30,7 +30,6 @@ Input: target = [3,7,9], arr = [3,7,11]
 Output: false
 
 Explanation: arr does not have value 9 and it can never be converted to target.
- 
 
 Constraints:
 
@@ -38,7 +37,6 @@ target.length == arr.length
 1 <= target.length <= 1000
 1 <= target[i] <= 1000
 1 <= arr[i] <= 1000
-
 
 */
 
